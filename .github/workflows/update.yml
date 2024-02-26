@@ -58,13 +58,14 @@ jobs:
           U_NAME: ${{ secrets.U_NAME }}
           U_EMAIL: ${{ secrets.U_EMAIL }}
       run: |
+        pwd
         git config --local user.email "${U_EMAIL}"
         git config --local user.name "${U_NAME}"
-        git checkout --orphan latest_branch
-        git add -A
-        git commit -am "${{ steps.date.outputs.date }}"
-        git branch -D main
-        git branch -m main
+        
+        git status -s
+        git add *
 
+        git commit -m "update `date +"%Y-%m-%d %H:%M"`"  # 提交记录包含时间 跟上面更改时区配合
+        
     - name: Push
       run: git push -f origin main
