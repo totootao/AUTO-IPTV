@@ -30,7 +30,7 @@ jobs:
         sed -i -n '/央视频道/,+1p' CCTV.m3u
         sed -i '1i #EXTM3U' CCTV.m3u
         sed -i '/^\s*$/d' CCTV.m3u
-        sed -i '/^.+,//g' CCTV.m3u
+        sed -i 's/^.+,//g' CCTV.m3u
 
         # 卫视源
         rm -f CNTV.m3u && touch CNTV.m3u
